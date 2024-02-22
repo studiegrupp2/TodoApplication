@@ -19,25 +19,25 @@ function Todo({ title, completed, onCheck, onRemove }) {
 }
 
 
-function CreateTodoForm({ onCreate }) {
-  const [newTitle, setNewTitle] = useState("");
-  //const [title, setTitle] = useState([]);
-  // console.log(onCreate);
+// function CreateTodoForm({ onCreate }) {
+//   const [newTitle, setNewTitle] = useState("");
+//   //const [title, setTitle] = useState([]);
+//   // console.log(onCreate);
 
-  return (
-    <>
-      <input value={newTitle} onChange={(event) => setNewTitle(event.target.value)} />
-      <button
-        onClick={() => {
-        onCreate(newTitle);
-          //setTitle("");
-        }}
-      >
-        Add
-      </button>
-    </>
-  );
-}
+//   return (
+//     <>
+//       <input value={newTitle} onChange={(event) => setNewTitle(event.target.value)} />
+//       <button
+//         onClick={() => {
+//         onCreate(newTitle);
+//           //setTitle("");
+//         }}
+//       >
+//         Add
+//       </button>
+//     </>
+//   );
+// }
 
 async function fetchData() {
   let result = await fetch("http://localhost:5271/todos/");
@@ -67,48 +67,48 @@ function App() {
   //   fetch("http://localhost:5721/todos/").then(res => res.json()).then(setTodos);
   // }, [])
           
-  const createTodo = (title) => {
-    fetch(`http://localhost:5271/todos/?title=${title}`, {   
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  // const createTodo = (title) => {
+  //   fetch(`http://localhost:5271/todos/?title=${title}`, {   
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
       
-    })
-      .then((res) => res.json())
-      .then((todo) => {
-        setTodos([...todos, todo]);
-      });
-      console.log(todos)
-  };
+  //   })
+  //     .then((res) => res.json())
+  //     .then((todo) => {
+  //       setTodos([...todos, todo]);
+  //     });
+  //     console.log(todos)
+  // };
 
-  const updateTodo = (todo, completed) => {
-    fetch(`http://localhost:5271/todo/${todo.id}?completed=true`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json"},
-    }).then(() => {
+  // const updateTodo = (todo, completed) => {
+  //   fetch(`http://localhost:5271/todo/${todo.id}?completed=true`, {
+  //     method: "PUT",
+  //     headers: { "Content-Type": "application/json"},
+  //   }).then(() => {
       
-      setTodos(
-        todos.map((all) => (all === todo ? { ...todo, completed } : all))
-      );
-    });
-  };
+  //     setTodos(
+  //       todos.map((all) => (all === todo ? { ...todo, completed } : all))
+  //     );
+  //   });
+  // };
 
 
-  const removeTodo = (todo) => {
-    fetch(`http://localhost:5271/todo/${todo.id}`,
-     { method: "DELETE" }).then(
-      () => {
-        setTodos(todos.filter((all) => all !== todo));
-      }
-    );
-  };
+  // const removeTodo = (todo) => {
+  //   fetch(`http://localhost:5271/todo/${todo.id}`,
+  //    { method: "DELETE" }).then(
+  //     () => {
+  //       setTodos(todos.filter((all) => all !== todo));
+  //     }
+  //   );
+  // };
 
   todos.sort((a, b) => (a.completed ? 1 : -1));
 
   return (
     <div className="App">
-       <CreateTodoForm  onCreate={createTodo}/>
+       {/* <CreateTodoForm  onCreate={createTodo}/> */}
         {todos.length === 0 ? (
           <p>loading...</p>
         ):
@@ -119,10 +119,10 @@ function App() {
             <Todo
               title={todo.title}
               completed={todo.completed}
-              onCheck={(completed) => {
-                updateTodo(todo, completed);
-              }}
-              onRemove={() => removeTodo(todo)}
+              // onCheck={(completed) => {
+              //   updateTodo(todo, completed);
+              // }}
+              // onRemove={() => removeTodo(todo)}
             />
           </li>
         ))}
